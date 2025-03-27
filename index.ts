@@ -1,8 +1,14 @@
 import path from "path";
 import puppeteer from "puppeteer";
+import fs from "fs";
+
+const pathChrome = fs.existsSync("/usr/bin/chromium-browser")
+  ? "/usr/bin/chromium-browser"
+  : "/usr/bin/chromium";
 
 (async () => {
   const browser = await puppeteer.launch({
+    executablePath: pathChrome,
     headless: false,
     timeout: 0,
     ignoreDefaultArgs: ["--enable-automation"],
